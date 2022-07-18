@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .serializers import UserSerializer
-
+from .models import User
 
 class LogoutAPIView(APIView):
     permission_classes = (IsAuthenticated,)
@@ -18,5 +18,7 @@ class LogoutAPIView(APIView):
         )
 
 
-class UserRegistration(APIView):
-    pass
+class UserRegistration(generics.CreateAPIView):
+    permission_classes = (AllowAny, )
+    serializer_class = UserSerializer
+
